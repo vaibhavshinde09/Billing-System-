@@ -1,0 +1,76 @@
+<br/>
+      <div class="card">
+        <div class="row">
+          <div class="col-md-12">
+      <form [formGroup]="vehiclesubtypeform">
+  <h3>Sub Vchicle Type</h3>
+   <div class="form-group" style="padding-top: 5px;">
+    <label>Vehicle Type:</label>
+  <select formControlName="vchtype" id="vchtype" [(ngModel)]="vchtype"  [compareWith]="compareFn" class="form-control">
+    <option selected="" disabled="">Select Vehicle Type</option>
+    <option *ngFor="let vch of getvchtypelist"
+   [ngValue]="vch">{{vch.vchtype}}</option>
+  </select>
+  </div>
+
+  <div class="form-group" style="padding-top: 10px;padding-right: 10px;">
+    <label for="exampleInputEmail1">Sub Vehicle Name</label>
+    <input type="text"  autocomplete="off" class="form-control" id="subvchtype" [(ngModel)]="subvchtype" formControlName="subvchtype" value=""  placeholder="Enter Vehicle Type">
+    <div
+                                                            *ngIf="(f.subvchtype.touched || f.subvchtype.dirty) && f.subvchtype.errors">
+                                                            <div class="error-msg" *ngIf="f.subvchtype.errors.required">
+                                                                 Sub Vehicle Name is required
+                                                            </div>
+                                                        </div>
+  </div>
+  <div class="form-group" style="padding-top: 10px;padding-right: 10px;">
+    <label for="exampleInputEmail1">Rate</label>
+    <input type="text"  autocomplete="off" class="form-control" id="rate" formControlName="rate" [(ngModel)]="rate" value="" placeholder="Enter Vehicle Type">
+  </div>
+
+    <div class="form-check">
+    <input type="checkbox" class="form-check-input" id="exampleCheck1" checked>
+    <label class="form-check-label" for="exampleCheck1">Check me out</label>
+  </div><br/>
+  <input type="hidden" formControlName="id" [(ngModel)]="id" value="">
+  <!-- <br/>
+<div *ngIf="id=='';then '#hidden'; else '#ktd'"> -->
+   <button type="submit" (click)="onSubmit()" [hidden]="id>=''"  class="btn btn-info">Submit</button>&nbsp;
+
+  <button type="submit" (click)="onUpdate()" [hidden]="id==''" class="btn btn-success">Update</button>
+</form>
+<br/>
+</div>
+  </div>
+  </div>
+<br/>
+<br/>
+
+
+
+
+<table class="table">
+  <thead>
+   <tr>
+     <th>Id</th>
+     <th>Vehicle Name</th>
+     <th>Sub Vehicle Type</th>
+     <th>Rate</th>
+     <th>Action</th>
+   </tr>
+  </thead>
+   <tbody>
+     <tr *ngFor="let RespData of getvchsubtypelist;index as i">
+      <td>{{RespData.id}}</td>
+      <td>{{RespData.vchtype}}</td>
+      <td>{{RespData.subvchtype}}</td>
+      <td>{{RespData.rate}}</td>
+      <td>
+        <button type="submit" class="btn btn-success" (click)="editButtonClick(i)">Edit</button>
+        <button type="submit" class="btn btn-danger" (click)="deleteApi(RespData.id,i)">Delete</button>
+
+
+      </td>
+     </tr>
+   </tbody>
+</table>

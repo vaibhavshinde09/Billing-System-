@@ -1,0 +1,117 @@
+<form [formGroup]="addcustomerform">
+
+<div class="col-md-12" style="padding-top: 10px;">
+   <div class="row">
+     <div class="col-md-4">
+      <div class="form-group">
+        <label for="exampleInputEmail1">Name</label>
+        <input type="text" autocomplete="off" class="form-control" [(ngModel)]="customer_name" id="name" formControlName="customer_name" aria-describedby="emailHelp" placeholder="Enter name">
+        <!-- <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small> -->
+      </div>
+     </div>
+     <div class="col-md-4">
+      <div class="form-group">
+        <label for="exampleInputEmail1">Email address</label>
+        <input type="text" autocomplete="off" class="form-control" id="email" [(ngModel)]="cust_email" formControlName="cust_email" aria-describedby="emailHelp" placeholder="Enter email">
+        <!-- <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small> -->
+      </div>
+     </div>
+     <div class="col-md-4">
+      <div class="form-group">
+        <label for="exampleInputEmail1"> address</label>
+        <input type="text"  autocomplete="off" class="form-control" id="address" [(ngModel)]="address" formControlName="address" placeholder="Enter address">
+        <!-- <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small> -->
+      </div>
+     </div>
+     <div class="col-md-4">
+      <div class="form-group">
+        <label for="exampleInputEmail1">Mobile No.</label>
+        <input type="text"  autocomplete="off" class="form-control" id="phno"  [(ngModel)]="phno" formControlName="phno" placeholder="Enter Moblie Number">
+        <!-- <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small> -->
+      </div>
+     </div>
+
+     <div class="col-md-4">
+       <div class="form-group">
+         <label>Vehicle Type</label>
+        <select class="form-control" [(ngModel)]="vchtype" formControlName="vchtype" value="" id="jcbtype_id" (change)="getjcbsubtype(1,$event)">
+          <option value=""selected disabled hidden>select Vehicle Type</option>
+          <ng-container
+           *ngFor="let jcbtype of leadstatusList; index as i">
+         <option [value]="jcbtype.vid">{{jcbtype.vchtype}}
+          </option>
+        </ng-container>
+
+        </select>
+       </div>
+     </div>
+     <div class="col-md-4">
+      <div class="form-group">
+        <label>Vehicle Work</label>
+       <select class="form-control" formControlName="subvchtype" [(ngModel)]="subvch" value="" id="jcbsubtype_id" (change)="getjcbsubtype(2,$event)">
+         <option value="" selected disabled hidden>Select Work </option>
+         <ng-container
+         *ngFor="let sb of subvchtype;index as i">
+        <option [ngValue]="sb.id">{{sb.subvchtype}}
+         </option>
+         </ng-container>
+       </select>
+      </div>
+    </div>
+    {{subvch}}
+    <div class="col-md-4">
+      <div class="form-group">
+        <label>Rate</label>
+       <select class="form-control"   formControlName="rate" value="" id="rateid" [(ngModel)]="rate"   (keyup)="onKeyUp()">
+        <option value="" selected disabled hidden ></option>
+        <ng-container
+        *ngFor="let rt of subvchtyperate; index as i">
+        <option [value]="rt.rate">{{rt.rate}}
+         </option>
+        </ng-container>
+       </select>
+      </div>
+    </div>
+
+    <div class="col-md-4">
+      <div class="form-group">
+        <label>Time</label>
+        <input type="time" formControlName="time"  [(ngModel)]="time"  autocomplete="off" value="" class="form-control" id="timeid"  (keyup)="onKeyUp()" />
+      </div>
+    </div>
+    <div class="col-md-4">
+      <div class="form-group">
+        <label>Total</label>
+        <input type="text" formControlName="total" id="totalid" value="{{total}}"  disabled class="form-control"/>
+      </div>
+    </div>
+    <!-- <div class="col-md-4">
+      <div class="md-form md-outline">
+        <label for="default-picker">From Time</label>
+
+        <input type="time" id="default-picker"  [(ngModel)]="fromtime" formControlName="fromtime" id="fromtimeid" class="form-control"
+         placeholder="Select time" (keyup)="ontimeUp()">
+      </div>
+    </div>
+    <div class="col-md-4">
+      <div class="md-form md-outline">
+        <label for="default-picker">To Time</label>
+
+        <input type="time" id="default-picker"  formControlName="totime" class="form-control"  [(ngModel)]="totime" id="totimeid" placeholder="Select time" (keyup)="ontimeUp()">
+      </div>
+    </div>
+    <div class="col-md-4">
+      <div class="form-group">
+        <label>Time Total</label>
+        <input type="text" formControlName="timetotalid" id="timetotalid" value="{{timetotalid}}"  disabled class="form-control"/>
+      </div>
+    </div> -->
+
+   </div>
+   <br/>
+      <button type="submit" class="btn btn-primary" (click)="onSubmit()">Submit</button>
+
+    </div>
+
+  </form>
+
